@@ -32,6 +32,13 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
         $this->loadRelativePath($this->mine, self::INVALID_FILE);
     }
 
+    public function testAfterLoadA4x4BoardTheBoardIs4x4()
+    {
+        $this->loadRelativePath($this->mine, self::VALID_FILE);
+        $board = $this->mine->getBoard();
+        $this->assertCount(4, $board);
+    }
+
     private function loadRelativePath($mine, $file)
     {
         $mine->load(__DIR__ . '/' . $file);
