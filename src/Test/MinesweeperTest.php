@@ -7,10 +7,20 @@ use LuisRovirosa\Minesweeper;
 class MinesweeperTest extends \PHPUnit_Framework_TestCase
 {
 
+    const VALID_FILE = '../../data/first.txt';
+    const INVALID_FILE = 'non_exixting_file';
+
+    private $mine;
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->mine = new Minesweeper();
+    }
+
     public function testLoadAValidFileDoesNotThrowAnException()
     {
-        $mine = new Minesweeper();
-        $mine->load(__DIR__ . '/../../data/first.txt');
+        $this->loadRelativePath($this->mine, self::VALID_FILE);
         $this->assertTrue(true);
     }
 
@@ -19,8 +29,12 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadAnInvalidFileThrowAnException()
     {
-        $mine = new Minesweeper();
-        $mine->load('non_exixting_file');
+        $this->loadRelativePath($this->mine, self::INVALID_FILE);
+    }
+
+    private function loadRelativePath($mine, $file)
+    {
+        $mine->load(__DIR__ . '/' . $file);
     }
 
 }
