@@ -39,8 +39,8 @@ class Minesweeper
 
     private function increaseNumOfBombs($file, $column)
     {
-        for ($i = $file - 1; $i <= $file + 1; $i++) {
-            for ($j = $column - 1; $j <= $column + 1; $j++) {
+        for ($i = max(0, $file - 1); $i <= $file + 1; $i++) {
+            for ($j = max(0, $column - 1); $j <= $column + 1; $j++) {
                 if ($this->board[$i][$j] != '*') {
                     $this->board[$i][$j] += 1;
                 }
