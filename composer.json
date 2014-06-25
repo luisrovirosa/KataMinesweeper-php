@@ -1,11 +1,14 @@
 {
     "name": "php-test-bootstrap",
+    "require": {
+        "symfony/console": "*"
+    },
     "require-dev": {
         "phpunit/phpunit": "4.1.*"
     },
     "autoload": {
         "psr-4": {
-            "Foo\\": "src"
+            "LuisRovirosa\\": "src"
         }
 
     }
