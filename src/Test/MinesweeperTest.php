@@ -7,10 +7,11 @@ use LuisRovirosa\Minesweeper;
 class MinesweeperTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testMyMethodAllwaysReturnsTrue()
+    public function testLoadAValidFileDoesNotThrowAnException()
     {
-        $myClass = new Minesweeper();
-        $this->assertTrue($myClass->myMethod());
+        $mine = new Minesweeper();
+        $mine->load('../data/first');
+        $this->assertTrue(true);
     }
 
 }

@@ -17,7 +17,7 @@ class Minesweeper
 
     public function getBoard()
     {
-        
+
     }
 
 }
