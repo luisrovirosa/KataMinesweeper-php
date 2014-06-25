@@ -12,6 +12,7 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
     const TWO_MINES_IN_THE_MIDDLE = '../../data/two_mines_in_the_middle.txt';
     const ONE_MINE_IN_THE_TOP_LEFT_CORNER = '../../data/one_mine_in_top_left_corner.txt';
     const ONE_MINE_IN_THE_BOTTOM_RIGHT_CORNER = '../../data/one_mine_in_bottom_right.txt';
+    const RECTANGULAR_3_4_MINES_IN_THE_CORNERS = '../../data/3x4_with_mines_in_the_corners.txt';
     const INVALID_FILE = 'non_exixting_file';
 
     private $mine;
@@ -107,6 +108,18 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
             array('0', '0', '0', '0'),
             array('0', '0', '1', '1'),
             array('0', '0', '1', '*'));
+        $this->assertEquals($expectedBoard, $board);
+    }
+
+    public function testIrregularBoardWithMinesInTheCorners()
+    {
+        $this->loadRelativePath($this->mine, self::RECTANGULAR_3_4_MINES_IN_THE_CORNERS);
+        $board = $this->mine->getBoard();
+        $expectedBoard = array(
+            array('*', '1', '1', '*'),
+            array('2', '2', '2', '2'),
+            array('*', '1', '1', '*'),
+        );
         $this->assertEquals($expectedBoard, $board);
     }
 

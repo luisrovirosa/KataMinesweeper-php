@@ -15,9 +15,9 @@ class Minesweeper
     public function load($filename)
     {
         $fileContent = explode("\n", file_get_contents($filename));
-        list($files, $columns) = explode(' ', $fileContent[0]);
-        $this->board = array_fill(0, $files, array_fill(0, $columns, '0'));
-        $this->loadBombs($files, $columns, $fileContent);
+        list($numFiles, $numColumns) = explode(' ', $fileContent[0]);
+        $this->board = array_fill(0, $numFiles, array_fill(0, $numColumns, '0'));
+        $this->loadBombs($numFiles, $numColumns, $fileContent);
     }
 
     public function getBoard()
@@ -27,8 +27,8 @@ class Minesweeper
 
     private function loadBombs($numFiles, $numColumns, $fileContent)
     {
-        for ($i = 0; $i < $numColumns; $i++) {
-            for ($j = 0; $j < $numFiles; $j++) {
+        for ($i = 0; $i < $numFiles; $i++) {
+            for ($j = 0; $j < $numColumns; $j++) {
                 if ('*' == $fileContent[$i + 1][$j]) {
                     $this->board[$i][$j] = '*';
                     $this->increaseNumOfBombs($i, $j, $numFiles, $numColumns);
