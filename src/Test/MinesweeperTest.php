@@ -7,7 +7,7 @@ use LuisRovirosa\Minesweeper;
 class MinesweeperTest extends \PHPUnit_Framework_TestCase
 {
 
-    const VALID_FILE = '../../data/first.txt';
+    const NO_MINES = '../../data/no_mines.txt';
     const INVALID_FILE = 'non_exixting_file';
 
     private $mine;
@@ -20,7 +20,7 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
 
     public function testLoadAValidFileDoesNotThrowAnException()
     {
-        $this->loadRelativePath($this->mine, self::VALID_FILE);
+        $this->loadRelativePath($this->mine, self::NO_MINES);
         $this->assertTrue(true);
     }
 
@@ -34,9 +34,21 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
 
     public function testAfterLoadA4x4BoardTheBoardIs4x4()
     {
-        $this->loadRelativePath($this->mine, self::VALID_FILE);
+        $this->loadRelativePath($this->mine, self::NO_MINES);
         $board = $this->mine->getBoard();
         $this->assertCount(4, $board);
+    }
+
+    public function testAfterLoadA4x4BoardWithoutMinesAllTheBoardIs0()
+    {
+        $this->loadRelativePath($this->mine, self::NO_MINES);
+        $board = $this->mine->getBoard();
+        $expectedBoard = array(
+            array('0', '0', '0', '0'),
+            array('0', '0', '0', '0'),
+            array('0', '0', '0', '0'),
+            array('0', '0', '0', '0'));
+        $this->assertEquals($expectedBoard, $board);
     }
 
     private function loadRelativePath($mine, $file)
