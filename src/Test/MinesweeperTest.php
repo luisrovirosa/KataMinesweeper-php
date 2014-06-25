@@ -8,6 +8,7 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
 {
 
     const NO_MINES = '../../data/no_mines.txt';
+    const ONE_MINE_IN_THE_MIDDLE = '../../data/one_mine_in_the_middle.txt';
     const INVALID_FILE = 'non_exixting_file';
 
     private $mine;
@@ -49,6 +50,13 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
             array('0', '0', '0', '0'),
             array('0', '0', '0', '0'));
         $this->assertEquals($expectedBoard, $board);
+    }
+
+    public function testAfterLoadA4x4BoardWithOneMineTheMineIsDetected()
+    {
+        $this->loadRelativePath($this->mine, self::ONE_MINE_IN_THE_MIDDLE);
+        $board = $this->mine->getBoard();
+        $this->assertEquals('*', $board[1][1]);
     }
 
     private function loadRelativePath($mine, $file)
