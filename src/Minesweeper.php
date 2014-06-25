@@ -31,14 +31,18 @@ class Minesweeper
             for ($j = 0; $j < $files; $j++) {
                 if ('*' == $fileContent[$i + 1][$j]) {
                     $this->board[$i][$j] = '*';
+                    $this->increaseNumOfBombs($i, $j);
+                }
+            }
+        }
+    }
 
-                    for ($x = $i - 1; $x <= $i + 1; $x++) {
-                        for ($y = $j - 1; $y <= $j + 1; $y++) {
-                            if ($this->board[$x][$y] != '*') {
-                                $this->board[$x][$y] = 1;
-                            }
-                        }
-                    }
+    private function increaseNumOfBombs($file, $column)
+    {
+        for ($i = $file - 1; $i <= $file + 1; $i++) {
+            for ($j = $column - 1; $j <= $column + 1; $j++) {
+                if ($this->board[$i][$j] != '*') {
+                    $this->board[$i][$j] += 1;
                 }
             }
         }
