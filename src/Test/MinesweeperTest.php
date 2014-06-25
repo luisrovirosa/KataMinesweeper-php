@@ -10,7 +10,8 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
     const NO_MINES = '../../data/no_mines.txt';
     const ONE_MINE_IN_THE_MIDDLE = '../../data/one_mine_in_the_middle.txt';
     const TWO_MINES_IN_THE_MIDDLE = '../../data/two_mines_in_the_middle.txt';
-    const ONE_MINE_IN_THE_CORNER = '../../data/one_mine_in_corner.txt';
+    const ONE_MINE_IN_THE_TOP_LEFT_CORNER = '../../data/one_mine_in_top_left_corner.txt';
+    const ONE_MINE_IN_THE_BOTTOM_RIGHT_CORNER = '../../data/one_mine_in_bottom_right.txt';
     const INVALID_FILE = 'non_exixting_file';
 
     private $mine;
@@ -85,15 +86,27 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedBoard, $board);
     }
 
-    public function test1MineInTheottomLeftCorner()
+    public function test1MineInTheTopLeftCorner()
     {
-        $this->loadRelativePath($this->mine, self::ONE_MINE_IN_THE_CORNER);
+        $this->loadRelativePath($this->mine, self::ONE_MINE_IN_THE_TOP_LEFT_CORNER);
         $board = $this->mine->getBoard();
         $expectedBoard = array(
             array('*', '1', '0', '0'),
             array('1', '1', '0', '0'),
             array('0', '0', '0', '0'),
             array('0', '0', '0', '0'));
+        $this->assertEquals($expectedBoard, $board);
+    }
+
+    public function test1MineInTheBottomRightCorner()
+    {
+        $this->loadRelativePath($this->mine, self::ONE_MINE_IN_THE_BOTTOM_RIGHT_CORNER);
+        $board = $this->mine->getBoard();
+        $expectedBoard = array(
+            array('0', '0', '0', '0'),
+            array('0', '0', '0', '0'),
+            array('0', '0', '1', '1'),
+            array('0', '0', '1', '*'));
         $this->assertEquals($expectedBoard, $board);
     }
 

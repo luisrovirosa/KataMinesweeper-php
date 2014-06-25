@@ -25,22 +25,22 @@ class Minesweeper
         return $this->board;
     }
 
-    private function loadBombs($files, $columns, $fileContent)
+    private function loadBombs($numFiles, $numColumns, $fileContent)
     {
-        for ($i = 0; $i < $columns; $i++) {
-            for ($j = 0; $j < $files; $j++) {
+        for ($i = 0; $i < $numColumns; $i++) {
+            for ($j = 0; $j < $numFiles; $j++) {
                 if ('*' == $fileContent[$i + 1][$j]) {
                     $this->board[$i][$j] = '*';
-                    $this->increaseNumOfBombs($i, $j);
+                    $this->increaseNumOfBombs($i, $j, $numFiles, $numColumns);
                 }
             }
         }
     }
 
-    private function increaseNumOfBombs($file, $column)
+    private function increaseNumOfBombs($file, $column, $numFiles, $numColumns)
     {
-        for ($i = max(0, $file - 1); $i <= $file + 1; $i++) {
-            for ($j = max(0, $column - 1); $j <= $column + 1; $j++) {
+        for ($i = max(0, $file - 1); $i < min($numFiles, $file + 2); $i++) {
+            for ($j = max(0, $column - 1); $j < min($numColumns, $column + 2); $j++) {
                 if ($this->board[$i][$j] != '*') {
                     $this->board[$i][$j] += 1;
                 }
