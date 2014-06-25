@@ -59,6 +59,18 @@ class MinesweeperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('*', $board[1][1]);
     }
 
+    public function testTheFieldsAroundABombAre1()
+    {
+        $this->loadRelativePath($this->mine, self::ONE_MINE_IN_THE_MIDDLE);
+        $board = $this->mine->getBoard();
+        $expectedBoard = array(
+            array('1', '1', '1', '0'),
+            array('1', '*', '1', '0'),
+            array('1', '1', '1', '0'),
+            array('0', '0', '0', '0'));
+        $this->assertEquals($expectedBoard, $board);
+    }
+
     private function loadRelativePath($mine, $file)
     {
         $mine->load(__DIR__ . '/' . $file);

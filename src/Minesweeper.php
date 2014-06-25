@@ -31,6 +31,14 @@ class Minesweeper
             for ($j = 0; $j < $files; $j++) {
                 if ('*' == $fileContent[$i + 1][$j]) {
                     $this->board[$i][$j] = '*';
+
+                    for ($x = $i - 1; $x <= $i + 1; $x++) {
+                        for ($y = $j - 1; $y <= $j + 1; $y++) {
+                            if ($this->board[$x][$y] != '*') {
+                                $this->board[$x][$y] = 1;
+                            }
+                        }
+                    }
                 }
             }
         }
