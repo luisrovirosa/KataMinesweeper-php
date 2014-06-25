@@ -34,7 +34,7 @@ class MainCommand extends Command
         $minesweeper->load($fileName);
 
         $board = $minesweeper->getBoard();
-        $output->writeln($board);
+        $output->writeln(json_encode($board));
     }
 
 }
