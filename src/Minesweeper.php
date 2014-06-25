@@ -10,9 +10,9 @@ class Minesweeper
         return true;
     }
 
-    public function load($fileName)
+    public function load($filename)
     {
-
+        file_get_contents($filename);
     }
 
     public function getBoard()
