@@ -17,6 +17,16 @@ class Minesweeper
         $fileContent = explode("\n", file_get_contents($filename));
         list($files, $columns) = explode(' ', $fileContent[0]);
         $this->board = array_fill(0, $files, array_fill(0, $columns, '0'));
+        $this->loadBombs($files, $columns, $fileContent);
+    }
+
+    public function getBoard()
+    {
+        return $this->board;
+    }
+
+    private function loadBombs($files, $columns, $fileContent)
+    {
         for ($i = 0; $i < $columns; $i++) {
             for ($j = 0; $j < $files; $j++) {
                 if ('*' == $fileContent[$i + 1][$j]) {
@@ -24,11 +34,6 @@ class Minesweeper
                 }
             }
         }
-    }
-
-    public function getBoard()
-    {
-        return $this->board;
     }
 
 }
